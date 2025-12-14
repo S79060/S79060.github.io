@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seri Auni Khairina - Student Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --color-background: #F4F7F8;
+            --color-card-bg: #FFFFFF;
+            --color-text-primary: #1F2937;
+            --color-text-secondary: #6B7280;
+            --color-accent: #0A3D62; /* Deep Ocean Blue */
+            --color-border: #E5E7EB;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- Bento Grid Container --- */
+        .bento-grid {
+            width: 100%;
+            max-width: 1200px; /* Max desktop width */
+            display: grid;
+            gap: 20px;
+            
+            /* Desktop Layout: 4 column grid */
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto auto;
+        }
+
+        /* --- Individual Grid Card Styles --- */
+        .card {
+            background-color: var(--color-card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--color-text-primary);
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+        
+        .card-content {
+            margin-top: auto;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card li {
+            margin-bottom: 6px;
+            padding-left: 10px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .card li:before {
+            content: "•";
+            color: var(--color-accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* --- Specific Card Sizing (Desktop) --- */
+
+        /* Card 1 (Profile): Large Box (2x2) */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+            justify-content: space-between;
+        }
+        .card-profile .profile-details h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--color-accent);
+        }
+        .card-profile .profile-details p {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+        .card-profile .tagline {
+            font-style: italic;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-top: 10px;
+        }
+        .social-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Card 2 (Location): Small Box (1x1) - Top Right Corner */
+        .card-location {
+            grid-column: span 1;
+            grid-row: span 1;
+            background-color: var(--color-accent);
+            color: var(--color-card-bg);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-location h3 {
+             color: var(--color-card-bg);
+             margin-bottom: 0;
+        }
+        .card-location p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+        }
+
+        /* Card 3 (Tech Stack / Subjects): Medium Box (1x1) */
+        .card-tech-stack {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        /* Card 4 (Case Study): Medium Box (1x1) */
+        .card-case-study {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        /* Card 5 (Hobby): Small Box (1x1) */
+        .card-hobby {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        /* Card 6 (Playlist): Wide Box (4x1) - Bottom Row */
+        .card-playlist {
+            grid-column: 1 / -1; /* Spans all 4 columns */
+            min-height: 120px;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-border);
+        }
+        .card-playlist p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .bento-grid {
+                /* Reset grid columns to stack all items vertically */
+                grid-template-columns: 1fr;
+                /* Remove specific grid area definitions for stacking */
+                grid-template-rows: auto;
+            }
+
+            /* Reset all specific grid spans to occupy full width */
+            .card {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+
+            .card-profile .profile-details h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card-playlist {
+                min-height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bento-grid">
+
+    <div class="card card-profile">
+        <div class="profile-details">
+            <h1>SERI AUNI KHAIRINA</h1>
+            <p><strong>Food Technology Program</strong></p>
+            <p>Year 1 Student</p>
+            <p class="tagline">'Science meet food.'</p>
+        </div>
+        <div class="social-links">
+            <h3>Connect</h3>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+            <a href="#">UMT Portal</a>
+        </div>
+    </div>
+
+    <div class="card card-location">
+        <h3>📍 UMT, Kuala Nerus</h3>
+        <p>Terengganu, Malaysia</p>
+        <p class="time-placeholder">Local Time: 14:32 PM</p>
+    </div>
+
+    <div class="card card-tech-stack">
+        <h3>📚 Current Focus</h3>
+        <ul>
+            <li>Food Chemistry</li>
+            <li>Food Microbiology</li>
+            <li>Data Analysis (Excel)</li>
+            <li>Lab Analysis Techniques</li>
+        </ul>
+    </div>
+
+    <div class="card card-case-study">
+        <h3>🔬 Mini Case Study</h3>
+        <p><strong>Title:</strong> Starch Gelatinization in Local Kuih</p>
+        <p class="card-content">Analyzing the impact of ingredient ratios and steaming time on the texture profiles of *Kuih Lapis* for optimal chewiness and layering structure.</p>
+        
+
+[Image of Starch Gelatinization Diagram]
+
+    </div>
+
+    <div class="card card-hobby">
+        <h3>🌅 Wind Down</h3>
+        <p>Evening walks at **Pantai UMT**</p>
+        <p class="card-content">A perfect place to relax and enjoy the ocean breeze after lab sessions.</p>
+    </div>
+
+    <div class="card card-playlist">
+        <h3>🎧 Focus Playlist</h3>
+        <p>Placeholder for Embedded Music Player Widget (Lofi/Study Mix)</p>
+    </div>
+
+</div>
+
+<script>
+    // Simple script to update the time for Card 2
+    function updateTime() {
+        // Set up the timezone for Kuala Nerus (Malaysia) - UTC+8
+        const now = new Date();
+        const options = { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            hour12: true, 
+            timeZone: 'Asia/Kuala_Lumpur' 
+        };
+        const timeString = now.toLocaleTimeString('en-US', options);
+        document.querySelector('.time-placeholder').textContent = "Local Time: " + timeString;
+    }
+    updateTime();
+    setInterval(updateTime, 60000); // Update every minute
+</script>
+
+</body>
+</html>
