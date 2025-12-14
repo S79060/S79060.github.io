@@ -36,13 +36,11 @@
         /* --- Bento Grid Container --- */
         .bento-grid {
             width: 100%;
-            max-width: 1200px; /* Max desktop width */
+            max-width: 1200px; 
             display: grid;
             gap: 20px;
-            
-            /* Desktop Layout: 4 column grid */
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto auto auto;
+            grid-template-rows: auto auto auto auto; 
         }
 
         /* --- Individual Grid Card Styles --- */
@@ -55,6 +53,12 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-2px) scale(1.01); 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .card h3 {
@@ -100,41 +104,48 @@
         /* Card 1 (Profile): Large Box (2x2) */
         .card-profile {
             grid-column: span 2;
-            grid-row: span 2;
+            grid-row: 1 / span 2; 
             justify-content: space-between;
+            
+            /* --- NEW BACKGROUND IMAGE STYLES --- */
+            background-image: url('bg.jpg');
+            background-size: cover;          
+            background-position: center;     
+            background-repeat: no-repeat;
+            
+            /* Optional Overlay for Readability */
+            background-blend-mode: multiply; 
+            background-color: var(--color-accent); /* Blue overlay */
+            
+            /* Text Color Update for Dark Background */
+            color: var(--color-card-bg); 
         }
+        
+        /* Ensure all text within the profile card is white */
+        .card-profile h1,
+        .card-profile .tagline,
+        .card-profile h3,
+        .card-profile p {
+             color: var(--color-card-bg); 
+        }
+
         .card-profile .profile-details h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: var(--color-accent);
+            color: var(--color-card-bg); /* Override accent color for H1 */
         }
-        .card-profile .profile-details p {
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-        }
-        .card-profile .tagline {
-            font-style: italic;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-top: 10px;
-        }
-        .social-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: 600;
-            font-size: 0.9rem;
+        
+        .card-profile .social-links a {
+            color: rgba(255, 255, 255, 0.8);
             transition: color 0.2s;
         }
-        .social-links a:hover {
-            color: var(--color-accent);
+        .card-profile .social-links a:hover {
+            color: var(--color-card-bg);
         }
+
 
         /* Card 2 (Location): Small Box (1x1) - Top Right Corner */
         .card-location {
-            grid-column: span 1;
-            grid-row: span 1;
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 1;
             background-color: var(--color-accent);
             color: var(--color-card-bg);
             text-align: center;
@@ -152,25 +163,40 @@
 
         /* Card 3 (Tech Stack / Subjects): Medium Box (1x1) */
         .card-tech-stack {
-            grid-column: span 1;
-            grid-row: span 1;
+            grid-column: 4 / span 1;
+            grid-row: 1 / span 1;
         }
 
         /* Card 4 (Case Study): Medium Box (1x1) */
         .card-case-study {
-            grid-column: span 1;
-            grid-row: span 1;
+            grid-column: 3 / span 1;
+            grid-row: 2 / span 1;
         }
 
         /* Card 5 (Hobby): Small Box (1x1) */
         .card-hobby {
-            grid-column: span 1;
-            grid-row: span 1;
+            grid-column: 4 / span 1;
+            grid-row: 2 / span 1;
         }
+        
+        /* Card 7 (Reflection): New Card (2x1 on desktop) */
+        .card-reflection {
+            grid-column: 1 / span 2; 
+            grid-row: 3 / span 1;
+        }
+        .card-reflection h3 {
+            color: var(--color-accent);
+        }
+        .card-reflection p {
+            font-style: italic;
+            font-size: 1.05rem;
+        }
+
 
         /* Card 6 (Playlist): Wide Box (4x1) - Bottom Row */
         .card-playlist {
-            grid-column: 1 / -1; /* Spans all 4 columns */
+            grid-column: 1 / -1; 
+            grid-row: 4 / span 1;
             min-height: 120px;
             justify-content: center;
             align-items: center;
@@ -185,24 +211,22 @@
         /* --- Mobile Responsiveness --- */
         @media (max-width: 768px) {
             .bento-grid {
-                /* Reset grid columns to stack all items vertically */
                 grid-template-columns: 1fr;
-                /* Remove specific grid area definitions for stacking */
                 grid-template-rows: auto;
             }
-
-            /* Reset all specific grid spans to occupy full width */
             .card {
                 grid-column: span 1 !important;
                 grid-row: span 1 !important;
             }
-
             .card-profile .profile-details h1 {
                 font-size: 1.5rem;
             }
-            
             .card-playlist {
                 min-height: 80px;
+            }
+            .card:hover {
+                transform: none; 
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             }
         }
     </style>
@@ -220,16 +244,16 @@
         </div>
         <div class="social-links">
             <h3>Connect</h3>
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">UMT Portal</a>
+            <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://github.com/https://s79060.github.io/" target="_blank">GitHub</a>
+            <a href="#" target="_blank">UMT Portal</a>
         </div>
     </div>
 
     <div class="card card-location">
         <h3>📍 UMT, Kuala Nerus</h3>
         <p>Terengganu, Malaysia</p>
-        <p class="time-placeholder">Local Time: 14:32 PM</p>
+        <p class="time-placeholder">Local Time: 16:15 PM</p>
     </div>
 
     <div class="card card-tech-stack">
@@ -246,10 +270,6 @@
         <h3>🔬 Mini Case Study</h3>
         <p><strong>Title:</strong> Starch Gelatinization in Local Kuih</p>
         <p class="card-content">Analyzing the impact of ingredient ratios and steaming time on the texture profiles of *Kuih Lapis* for optimal chewiness and layering structure.</p>
-        
-
-[Image of Starch Gelatinization Diagram]
-
     </div>
 
     <div class="card card-hobby">
@@ -257,10 +277,15 @@
         <p>Evening walks at **Pantai UMT**</p>
         <p class="card-content">A perfect place to relax and enjoy the ocean breeze after lab sessions.</p>
     </div>
+    
+    <div class="card card-reflection">
+        <h3>💡 Why Food Tech Matters in Malaysia</h3>
+        <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+    </div>
 
     <div class="card card-playlist">
         <h3>🎧 Focus Playlist</h3>
-        <p>Placeholder for Embedded Music Player Widget (Lofi/Study Mix)</p>
+        <p><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4wtaPI7u4uqilJYkRQsIPQ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></p>
     </div>
 
 </div>
