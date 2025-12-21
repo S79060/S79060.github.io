@@ -14,6 +14,7 @@
             --color-text-secondary: #6B7280;
             --color-accent: #0A3D62; /* Deep Ocean Blue */
             --color-border: #E5E7EB;
+            --color-button-hover: #165a8d;
         }
 
         * {
@@ -99,6 +100,28 @@
             margin-left: -1em;
         }
 
+        /* --- Button Style --- */
+        .btn-lab {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: var(--color-accent);
+            color: white !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-lab:hover {
+            background-color: var(--color-button-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(10, 61, 98, 0.2);
+        }
+
         /* --- Specific Card Sizing (Desktop) --- */
 
         /* Card 1 (Profile): Large Box (2x2) */
@@ -106,22 +129,15 @@
             grid-column: span 2;
             grid-row: 1 / span 2; 
             justify-content: space-between;
-            
-            /* --- NEW BACKGROUND IMAGE STYLES --- */
             background-image: url('bg.jpg');
             background-size: cover;          
             background-position: center;     
             background-repeat: no-repeat;
-            
-            /* Optional Overlay for Readability */
             background-blend-mode: multiply; 
-            background-color: var(--color-accent); /* Blue overlay */
-            
-            /* Text Color Update for Dark Background */
+            background-color: var(--color-accent); 
             color: var(--color-card-bg); 
         }
         
-        /* Ensure all text within the profile card is white */
         .card-profile h1,
         .card-profile .tagline,
         .card-profile h3,
@@ -130,19 +146,21 @@
         }
 
         .card-profile .profile-details h1 {
-            color: var(--color-card-bg); /* Override accent color for H1 */
+            color: var(--color-card-bg);
         }
         
         .card-profile .social-links a {
             color: rgba(255, 255, 255, 0.8);
             transition: color 0.2s;
+            margin-right: 10px;
+            text-decoration: none;
         }
         .card-profile .social-links a:hover {
             color: var(--color-card-bg);
+            text-decoration: underline;
         }
 
-
-        /* Card 2 (Location): Small Box (1x1) - Top Right Corner */
+        /* Card 2 (Location): Small Box (1x1) */
         .card-location {
             grid-column: 3 / span 1;
             grid-row: 1 / span 1;
@@ -192,7 +210,6 @@
             font-size: 1.05rem;
         }
 
-
         /* Card 6 (Playlist): Wide Box (4x1) - Bottom Row */
         .card-playlist {
             grid-column: 1 / -1; 
@@ -201,11 +218,6 @@
             justify-content: center;
             align-items: center;
             background-color: var(--color-border);
-        }
-        .card-playlist p {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--color-text-secondary);
         }
 
         /* --- Mobile Responsiveness --- */
@@ -253,7 +265,7 @@
     <div class="card card-location">
         <h3>📍 UMT, Kuala Nerus</h3>
         <p>Terengganu, Malaysia</p>
-        <p class="time-placeholder">Local Time: 16:15 PM</p>
+        <p class="time-placeholder">Local Time: --:--</p>
     </div>
 
     <div class="card card-tech-stack">
@@ -267,33 +279,32 @@
     </div>
 
     <div class="card card-case-study">
-        <h3>🔬 Mini Case Study</h3>
-        <p><strong>Title:</strong> Starch Gelatinization in Local Kuih</p>
-        <p class="card-content">Analyzing the impact of ingredient ratios and steaming time on the texture profiles of *Kuih Lapis* for optimal chewiness and layering structure.</p>
+        <h3>🧪 Mini Case Study</h3>
+        <p><strong>Title:</strong> Starch Gelatinization</p>
+        <p class="card-content">Analyzing the impact of ingredient ratios on *Kuih Lapis* texture for optimal chewiness.</p>
+        <a href="[PASTE YOUR APP URL HERE]" class="btn-lab" target="_blank">Try My Lab Timer App</a>
     </div>
 
     <div class="card card-hobby">
-        <h3>🌅 Wind Down</h3>
+        <h3>🏖️ Wind Down</h3>
         <p>Evening walks at **Pantai UMT**</p>
         <p class="card-content">A perfect place to relax and enjoy the ocean breeze after lab sessions.</p>
     </div>
     
     <div class="card card-reflection">
-        <h3>💡 Why Food Tech Matters in Malaysia</h3>
+        <h3>🏢 Why Food Tech Matters</h3>
         <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
     </div>
 
     <div class="card card-playlist">
-        <h3>🎧 Focus Playlist</h3>
-        <p><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4wtaPI7u4uqilJYkRQsIPQ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></p>
+        <h3 style="margin-bottom: 10px;">🎧 Focus Playlist</h3>
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZf97qyq2iJu?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
 </div>
 
 <script>
-    // Simple script to update the time for Card 2
     function updateTime() {
-        // Set up the timezone for Kuala Nerus (Malaysia) - UTC+8
         const now = new Date();
         const options = { 
             hour: '2-digit', 
@@ -305,7 +316,7 @@
         document.querySelector('.time-placeholder').textContent = "Local Time: " + timeString;
     }
     updateTime();
-    setInterval(updateTime, 60000); // Update every minute
+    setInterval(updateTime, 60000);
 </script>
 
 </body>
